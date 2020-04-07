@@ -7,7 +7,7 @@ find_package(OpenCV REQUIRED)
 find_package(exiv2 REQUIRED CONFIG NAMES exiv2)    # search ${CMAKE_INSTALL_PREFIX}/lib/cmake/exiv2
 find_package(GDAL REQUIRED)     # find system installed GDAL package with predefined CMake variable for finding GDAL
 
-add_executable(Orthophoto_Maps_Cpp main.cpp)
+add_executable(Orthophoto_Maps_Cpp main.cpp preprocessing.cpp georeferencing.cpp rectification.cpp visualization.cpp)
 
 include_directories(include ${GDAL_INCLUDE_DIRS})  # Specify location of GDAL header files
 
