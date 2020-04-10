@@ -3,14 +3,11 @@ project(Orthophoto_Maps_Cpp)
 
 set(CMAKE_CXX_STANDARD 14)
 
-find_package(OpenCV REQUIRED)
-find_package(exiv2 REQUIRED CONFIG NAMES exiv2)    # search ${CMAKE_INSTALL_PREFIX}/lib/cmake/exiv2
-find_package(GDAL REQUIRED)     # find system installed GDAL package with predefined CMake variable for finding GDAL
+find_package(exiv2lib REQUIRED CONFIG NAMES exiv2)
 
-add_executable(Orthophoto_Maps_Cpp main.cpp preprocessing.cpp georeferencing.cpp rectification.cpp visualization.cpp)
+link_libraries(exiv2lib)
 
-include_directories(include ${GDAL_INCLUDE_DIRS})  # Specify location of GDAL header files
-
-target_link_libraries(Orthophoto_Maps_Cpp ${OpenCV_LIBS})
-target_link_libraries(Orthophoto_Maps_Cpp exiv2)             # link exiv2
-target_link_libraries(Orthophoto_Maps_Cpp ${GDAL_LIBRARIES})  # Specify GDAL libraries to link your cpp executable target against
+add_executable(Orthophoto_Maps_Cpp main.cpp)
+add_executable(exifprint samples/exifprint.cpp)
+add_executable(xmpprint samples/xmpprint.cpp)
+add_executable(metadataparsing metadataparsing.cpp)
